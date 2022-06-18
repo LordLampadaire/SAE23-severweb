@@ -103,7 +103,7 @@ nano conf/gunicorn_config.py
 ##### Étape 2.2 recopiez les lignes suivantes dans votre fichier
 
 ```
-command = '/home/"le nom de la machine"/django_env/bin/guincorn'
+command = '/home/"le nom de la machine"/"le nom de votre environnement"/bin/guincorn'
 pythonpath = '/home/"le nom de votre machine"/"le nom de votre projet"'
 bind = '"votre adresse IP":8000'
 workers = 3
@@ -117,7 +117,7 @@ sauvgarder votre fichier
 gunicorn -c conf/gunicorn_config.py "le nom de votre projet".wsgi
 ```
 
-arrétez gunicorn et méttez le en arrière plan avec **bg** 
+faites ctrl z  et méttez le en arrière plan avec **bg** 
 
 #### Configuration nginx
 
@@ -165,7 +165,7 @@ server {
 location /static/ {
     root /home/"le nom de la machine"/static/;
 }
-location /{
+location / {
     proxy_pass htttp://"votre adresse IP":8000;
     }
 }
@@ -186,7 +186,7 @@ sudo ln -s /etc/nginx/sites-avaible/"le nom de votre projet"
 ##### Étape 7 redémarez nginx
 
 ```
-sudo systemctl restart ngnix
+sudo systemctl restart nginx
 ```
 
 ##### Étape 8 allez sur votre navigateur et tapez l'adresse IP de la machine
